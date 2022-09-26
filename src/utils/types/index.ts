@@ -18,7 +18,8 @@ export interface singleProps {
   percent?: number;
   strokeWidth?: number;
   strokeLinecap?: strokeLinecap;
-  strokeColor?: string | ProgressGradient;
+  strokeBackgroundColor?: string | ProgressGradient;
+  strokeBarColor?: string | ProgressGradient;
   width?: number;
   height?: number;
 }

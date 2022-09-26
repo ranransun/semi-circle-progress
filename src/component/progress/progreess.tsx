@@ -16,8 +16,13 @@ const SemiCircleProgress: React.FC<ProgressProps> = (props: ProgressProps) => {
   ) => {
     const {
       position: { x, y },
-      radius,
-      strokeColor,
+      radius = 10,
+      strokeBarColor = [
+        { offset: '0%', color: '#FF7529' },
+        { offset: '5%', color: '#FFAC47' },
+        { offset: '100%', color: '#FF7529' },
+      ],
+      strokeBackgroundColor = '#f4f4f4',
       strokeWidth = 14,
       strokeLinecap = 'round',
       percent = 0,
@@ -34,15 +39,18 @@ const SemiCircleProgress: React.FC<ProgressProps> = (props: ProgressProps) => {
         : value > 0
         ? 'round'
         : 'butt';
-    const stroke = Array.isArray(strokeColor)
-      ? `single-linear-gradient_${index || 0}}`
-      : strokeColor;
+    const strokeBack = Array.isArray(strokeBackgroundColor)
+      ? `url(#back-linear-gradient_${index || 0})`
+      : strokeBackgroundColor;
+    const strokeFront = Array.isArray(strokeBarColor)
+      ? `url(#front-linear-gradient_${index || 0})`
+      : strokeBarColor;
     return (
       <circle
         cx={x}
         cy={y}
         r={radius}
-        stroke={stroke}
+        stroke={type === 'back' ? strokeBack : strokeFront}
         strokeWidth={strokeWidth}
         fill='none'
         strokeDasharray={strokeDasharray}
@@ -53,19 +61,45 @@ const SemiCircleProgress: React.FC<ProgressProps> = (props: ProgressProps) => {
   };
   const renderSingleProgress = (singleConfig?: singleProps, index?: number) => {
     if (singleConfig) {
-      const { strokeColor } = singleConfig;
+      const {
+        strokeBackgroundColor,
+        strokeBarColor = [
+          { offset: '0%', color: '#FF7529' },
+          { offset: '5%', color: '#FFAC47' },
+          { offset: '100%', color: '#FF7529' },
+        ],
+      } = singleConfig;
       return (
         <React.Fragment>
-          {Array.isArray(strokeColor) && (
+          {Array.isArray(strokeBackgroundColor) && (
             <defs>
               <linearGradient
-                id={`single-linear-gradient_${index || 0}`}
+                id={`back-linear-gradient_${index || 0}`}
                 x1='0%'
                 y1='0%'
                 x2='100%'
                 y2='0%'
               >
-                {strokeColor.map((linear) => (
+                {strokeBackgroundColor.map((linear) => (
+                  <stop
+                    key={linear.offset}
+                    offset={linear.offset}
+                    style={{ stopColor: linear.color, stopOpacity: 1 }}
+                  />
+                ))}
+              </linearGradient>
+            </defs>
+          )}
+          {Array.isArray(strokeBarColor) && (
+            <defs>
+              <linearGradient
+                id={`front-linear-gradient_${index || 0}`}
+                x1='0%'
+                y1='0%'
+                x2='100%'
+                y2='0%'
+              >
+                {strokeBarColor.map((linear) => (
                   <stop
                     key={linear.offset}
                     offset={linear.offset}
