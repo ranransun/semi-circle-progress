@@ -16,7 +16,7 @@ const SemiCircleProgress: React.FC<ProgressProps> = (props: ProgressProps) => {
   ) => {
     const {
       position: { x, y },
-      radius = 10,
+      radius = 50,
       strokeBarColor = [
         { offset: '0%', color: '#FF7529' },
         { offset: '5%', color: '#FFAC47' },

@@ -20,8 +20,6 @@ export interface singleProps {
   strokeLinecap?: strokeLinecap;
   strokeBackgroundColor?: string | ProgressGradient;
   strokeBarColor?: string | ProgressGradient;
-  width?: number;
-  height?: number;
 }
 
 export type multiProps = singleProps[];
