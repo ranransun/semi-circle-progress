@@ -8,7 +8,7 @@ export interface ProgressProps {
 }
 
 const SemiCircleProgress: React.FC<ProgressProps> = (props: ProgressProps) => {
-  const { config } = props;
+  const { config, width = 400, height = 200 } = props;
   const renderCircle = (
     type: 'front' | 'back',
     configItem: singleProps,
@@ -133,7 +133,7 @@ const SemiCircleProgress: React.FC<ProgressProps> = (props: ProgressProps) => {
   };
 
   return (
-    <svg width={450} height={200} style={{ overflow: 'unset' }}>
+    <svg width={width} height={height} style={{ overflow: 'unset' }}>
       {Array.isArray(config)
         ? renderMultiProgress(config)
         : renderSingleProgress(config)}
