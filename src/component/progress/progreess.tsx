@@ -25,7 +25,7 @@ const SemiCircleProgress: React.FC<ProgressProps> = (props: ProgressProps) => {
       strokeBackgroundColor = '#f4f4f4',
       strokeWidth = 14,
       strokeLinecap = 'round',
-      percent = 0,
+      percent = 0.5,
     } = configItem;
     const strokeDashValue: number = Number((Math.PI * radius).toFixed(0));
     const value = percent * strokeDashValue;
