@@ -1,6 +1,6 @@
 {
   "name": "semi-circle-progress",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "半圆进度条",
   "main": "dist/index.js",
   "scripts": {
