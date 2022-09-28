@@ -6,7 +6,7 @@ npm i semi-circle-progress
 ```
 ## 📎 use
 ```bash
-import SemiCircleProgress from "semi-circle-progress
+import SemiCircleProgress from "semi-circle-progress"
 ```
 
 ## 组件参数：
