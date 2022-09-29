@@ -23,7 +23,7 @@ const Circle: React.FC<CircleProps> = (props: CircleProps) => {
     percent = 0.5,
   } = configItem;
   const strokeDashValue: number = Number((Math.PI * radius).toFixed(0));
-  const value = percent * strokeDashValue;
+  const value = Math.trunc(percent * strokeDashValue);
   const strokeDasharray =
     type === 'back' ? strokeDashValue : `${value} ${strokeDashValue}`;
   const renderStrokeLinecap: strokeLinecap =
